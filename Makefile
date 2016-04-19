@@ -24,11 +24,11 @@ GH_PROJECT=	ateam_mysql_ldap_auth
 GH_TAGNAME=	0ce8034
 
 PLIST_FILES=	lib/mysql/plugin/auth_ldap.so \
-		etc/ateam_mysql_ldap_auth.conf
+		etc/ateam_mysql_ldap_auth.conf-dist
 
 do-install:
 	${MKDIR} ${STAGEDIR}${PREFIX}/lib/mysql/plugin
 	${INSTALL_PROGRAM} ${WRKSRC}/src/auth_ldap.so ${STAGEDIR}${PREFIX}/lib/mysql/plugin/
-	${INSTALL_DATA} ${WRKSRC}/ateam_mysql_ldap_auth.conf ${STAGEDIR}${PREFIX}/etc/
+	${INSTALL_DATA} ${WRKSRC}/ateam_mysql_ldap_auth.conf ${STAGEDIR}${PREFIX}/etc/ateam_mysql_ldap_auth.conf-dist
 
 .include <bsd.port.mk>
