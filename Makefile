@@ -26,6 +26,8 @@ PLIST_FILES=	lib/mysql/plugin/auth_ldap.so \
 		${DOCSDIR}/README \
 		${DOCSDIR}/INSTALL
 
+SUB_FILES=	pkg-message
+
 do-install:
 	${MKDIR} ${STAGEDIR}${PREFIX}/lib/mysql/plugin
 	${MKDIR} ${STAGEDIR}${DOCSDIR}
