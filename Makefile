@@ -11,24 +11,27 @@ COMMENT=	A-Team MySQL LDAP authentication plugin
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libconfig.so:${PORTSDIR}/devel/libconfig
-RUN_DEPENDS=	mysql${MYSQL_VER}-server>5.6:${PORTSDIR}/databases/mysql56-server
+LIB_DEPENDS=	libconfig.so:devel/libconfig
+RUN_DEPENDS=	mysql${MYSQL_VER}-server>5.6:databases/mysql56-server
 
-USE_MYSQL=	yes
 USE_OPENLDAP=	yes
-USES=		gmake
+USES=		gmake mysql:server
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	ateamsystems
-GH_PROJECT=	ateam_mysql_ldap_auth
 GH_TAGNAME=	f6a1a5d
 
 PLIST_FILES=	lib/mysql/plugin/auth_ldap.so \
-		etc/ateam_mysql_ldap_auth.conf-dist
+		etc/ateam_mysql_ldap_auth.conf.sample \
+		${DOCSDIR}/README \
+		${DOCSDIR}/INSTALL
 
 do-install:
 	${MKDIR} ${STAGEDIR}${PREFIX}/lib/mysql/plugin
+	${MKDIR} ${STAGEDIR}${DOCSDIR}
 	${INSTALL_PROGRAM} ${WRKSRC}/src/auth_ldap.so ${STAGEDIR}${PREFIX}/lib/mysql/plugin/
-	${INSTALL_DATA} ${WRKSRC}/ateam_mysql_ldap_auth.conf ${STAGEDIR}${PREFIX}/etc/ateam_mysql_ldap_auth.conf-dist
+	${INSTALL_DATA} ${WRKSRC}/ateam_mysql_ldap_auth.conf ${STAGEDIR}${PREFIX}/etc/ateam_mysql_ldap_auth.conf.sample
+	${INSTALL_MAN} ${WRKSRC}/README ${STAGEDIR}${DOCSDIR}/
+	${INSTALL_MAN} ${WRKSRC}/INSTALL ${STAGEDIR}${DOCSDIR}/
 
 .include <bsd.port.mk>
