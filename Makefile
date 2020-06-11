@@ -12,7 +12,7 @@ LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libconfig.so:devel/libconfig
-RUN_DEPENDS=	mysql${MYSQL_VER}-server>5.6:databases/mysql56-server
+RUN_DEPENDS=	mysql${MYSQL_VER}-server>=5.6:databases/mysql56-server
 
 USE_OPENLDAP=	yes
 USES=		gmake mysql:server
