@@ -19,7 +19,7 @@ USES=		gmake mysql:server
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	ateamsystems
-GH_TAGNAME=	f6a1a5d
+GH_TAGNAME=	3d4b1cf
 
 PLIST_FILES=	lib/mysql/plugin/auth_ldap.so \
 		"@sample etc/ateam_mysql_ldap_auth.conf.sample" \
